@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <ion-grid>
+    <ion-item lines="none" >
+      <ion-col class="ion-text-center">
+        <ion-img  src="assets/icon/log.png" class="logo" ></ion-img>
+      </ion-col>
+  
+    </ion-item>
+    <ion-item lines="none" >
+      <ion-col class="ion-text-center" >
+        <ion-card-title>
+          INFINIONAIRE PROPERTIES
+        </ion-card-title>
+        
+      </ion-col>
+    </ion-item>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3" >
+        <ion-list>
+          <ion-item> 
+            <ion-label position ="floating">Email</ion-label>
+            <ion-input type="email"
+            ngModel name ="email"
+            required
+            email 
+            #emailCtrl="ngModel"
+          
+            ></ion-input>
+            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label>should be a valid email</ion-label>
+            </ion-item>
+          </ion-item>
+          <ion-item>
+            <ion-label position ="floating">Password</ion-label>
+             <ion-input type="password" 
+             ngModel name ="password"
+            required
+            minlength="6"
+            #passCtrl="ngModel"
+            
+             ></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!passCtrl.valid && passCtrl.touched" lines="none">
+            <ion-label>should be at least 6 characters long</ion-label>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-button 
+        type="button"
+        color="primary" 
+        fill ="clear"
+         expand="block"
+         (click)="onSwitchAuthMode()"
+         >don't have an account ? Sign Up</ion-button>
+        <ion-button  type="submit" 
+        color="primary" 
+        expand="block" 
+        [disabled]="!f.valid"
+        >Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button 
+        (click)="onReset()"
+        type="button"
+        color="primary" 
+        fill ="clear"
+         expand="block"
+         >
+        Forgot Password?
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>
+
+</ion-content>

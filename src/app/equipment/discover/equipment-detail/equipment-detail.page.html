@@ -1,0 +1,148 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/equipment/tabs/discover"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{isLoading? 'Loading...' : equipment.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner color="primary"></ion-spinner>
+
+  </div>
+  <ion-grid class="ion-no-padding" *ngIf="!isLoading">
+    <ion-row>
+      <ion-col>
+        <ion-slides pager="true">
+          <ion-slide> 
+            <ion-row>
+              <ion-col size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.imageUrl" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.imagePro" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>`
+          <ion-slide>
+            <ion-row>
+              <ion-col size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.image3" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.image4" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.image5" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col  size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.image6" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+          <ion-slide>
+            <ion-row>
+              <ion-col size="12" size-sm ="14" offset-sm="1" class="ion-no-padding"  >
+                <ion-img [src]="equipment.image7" ></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+        <ion-card-title>R{{equipment.price}}</ion-card-title> 
+        <ion-card-title>({{equipment.image9}})</ion-card-title> 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+        <ion-icon  name="bed-outline"></ion-icon>
+        <p class="col">|Bedroom|</p>
+        <p>{{equipment.bedroom}}</p>
+      </ion-col>
+      <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+        <ion-icon name="rainy-outline"></ion-icon>
+        <p class="col">|Bathroom|</p>
+        <p>{{equipment.bathroom}}</p> 
+      </ion-col>
+      <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+        <ion-icon name="car-outline"></ion-icon>
+        <p class="col">|Garage|</p>
+        <p>{{equipment.garage}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-card-content>
+      <ion-label lines="full" class="ion-text-wrap">
+        <ion-text class="ion-text-center">
+          <h2 class="col">{{equipment.type}}</h2>
+          <h2 class="col">Property Description</h2>
+        </ion-text>
+      </ion-label>
+      <ion-row class="ion-text-wrap" >
+        <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+          <p>{{equipment.description}}</p> 
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    
+    <ion-row >
+      <ion-col  class="ion-text-center" size-sm ="6" offset-sm="3" class="ion-padding">
+        <p class="col">{{equipment.image8}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col 
+      size-sm ="6" offset-sm="3" class="ion-no-padding">
+       <ion-img
+       role="button"
+       (click)="onShowFullMap()" 
+       class="location-image" 
+       [src]="equipment.location.staticMapImageUrl">
+       </ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-grid>
+      
+     
+      <ion-row>
+      <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+        <h5 class="col">Owner Contact Details</h5>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-img  [src]="equipment.imageProfile"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2 >{{equipment.name}}</h2>
+            <h2>{{equipment.surname}}</h2>
+            <p>{{equipment.emailAdress}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+   
+  </ion-grid>
+
+  </ion-grid>
+  
+
+</ion-content>

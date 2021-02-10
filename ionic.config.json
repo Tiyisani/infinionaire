@@ -1,0 +1,7 @@
+{
+  "name": "infinionaire-properties",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

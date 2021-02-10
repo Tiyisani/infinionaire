@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar><ion-buttons slot ="start">
+    <ion-back-button [defaultHref] ="'/auth'"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Forgot password</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" >
+    <ion-col class="ion-text-center">
+      <ion-img  src="assets/icon/log.png" class="logo" ></ion-img>
+    </ion-col>
+
+  </ion-item>
+  <ion-item lines="none" >
+    <ion-col class="ion-text-center" >
+      <ion-card-title>
+        INFINIONAIRE PROPERTIES
+      </ion-card-title>
+      
+    </ion-col>
+  </ion-item>
+  <ion-row>
+    <ion-col size-md="6" offset-md="3">
+      <ion-item> 
+        <ion-label position ="floating">Email</ion-label>
+        <ion-input type="email"
+        [(ngModel)]="email"
+        required
+        email 
+
+        ></ion-input>
+       
+
+      </ion-item>
+
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size-md="6" offset-md="3">
+      <ion-button 
+      type="button"
+      color="primary" 
+      fill ="clear"
+       expand="block"
+       (click)="resetPassword()"
+       >Reset Password</ion-button>
+       </ion-col>
+       </ion-row>
+</ion-content>
+

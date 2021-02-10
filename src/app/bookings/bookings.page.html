@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="sideMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Your Hired Equipment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="isLoading" class="ion-text-center" size-md = "6" offset-md="3">
+        <ion-spinner color="primary">
+
+        </ion-spinner>
+      </ion-col>
+      <ion-col *ngIf="!isLoading && (loadedBookings && loadedBookings.length <= 0)"
+       class="ion-text-center" size-md = "6" offset-md="3">
+        <p>You havent hired any equipment!</p>
+      </ion-col>
+      <ion-col class="ion-text-center" size-md = "6" offset-md="3"
+        *ngIf="!isLoading && !loadedBookings ||loadedBookings.length > 0" >
+        <ion-list>
+          <ion-item-sliding *ngFor="let booking of loadedBookings" #slidingBooking>
+            <ion-item>
+              <ion-card>
+                <ion-img [src]="booking.equipmentImage"></ion-img>
+                <ion-card-header>
+                  <ion-card-title>{{booking.equipmentTitle}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-card-subtitle>{{booking.collection}}</ion-card-subtitle> 
+                  <ion-label> Booked From:{{booking.bookedFrom| date}} 
+                    </ion-label>
+                   
+                  <ion-label>To:{{booking.bookedTo | date}}</ion-label>
+                </ion-card-content>
+               
+               
+              </ion-card>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option color="danger" (click)="onCancelBooking(booking.id,slidingBooking)">
+                <ion-icon slot="icon-only" name = "trash-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

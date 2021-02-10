@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Infionaire Properties</string>
+    <string name="title_activity_main">Infionaire Properties</string>
+    <string name="package_name">com.infionaireProperties</string>
+    <string name="custom_url_scheme">com.infionaireProperties</string>
+</resources>

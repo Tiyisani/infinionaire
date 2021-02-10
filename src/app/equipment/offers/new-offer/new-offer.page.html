@@ -1,0 +1,234 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/equipment/tabs/offers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Offer New Property</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button
+        (click)="onCreateOffer()"
+        [disabled]="!form.get('image').value"
+      >
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">City,Province</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="title"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="image8"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating"> For Sale/Rent?</ion-label>
+            <ion-select  class="custom-options" formControlName="image9">
+              <ion-select-option value="Sale">Sale</ion-select-option>
+              <ion-select-option value="Rent">Rent</ion-select-option>
+            </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating"> Type of Property?</ion-label>
+            <ion-select  class="custom-options" formControlName="type">
+              <ion-select-option value="House">House</ion-select-option>
+              <ion-select-option value="Apartment">Apartment</ion-select-option>
+              <ion-select-option value="Townhouse">Townhouse</ion-select-option>
+              <ion-select-option value="Land">Land</ion-select-option>
+              <ion-select-option value="Business">Development</ion-select-option>
+              <ion-select-option value="Industrial">Industrial</ion-select-option>
+              <ion-select-option value="Farm">Farm</ion-select-option>
+            </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Description and Points of interests</ion-label>
+            <ion-textarea rows="3" formControlName="description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row
+        *ngIf="
+          !form.get('description').valid && form.get('description').touched
+        "
+      >
+        <ion-col size-sm="6" offset-sm="3">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Bedrooms</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="bedroom"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Bathrooms</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="bathroom"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Garage/Parking</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="garage"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Price (R) </ion-label>
+            <ion-input type="number" formControlName="price"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Today's date</ion-label>
+            <ion-datetime
+              min="2020-01-01"
+              max="2025-12-31"
+              formControlName="dateFrom"
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="3">
+          <ion-item>
+            <ion-label position="floating">last sold date</ion-label>
+            <ion-datetime
+              min="1980-01-01"
+              max="2025-12-31"
+              formControlName="dateTo"
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <p> Please note we do not display this information on the app
+
+            </p>
+            <ion-label position="floating">(R)Amount owed on Property(optional)</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="phoneNumber"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <app-location-picker 
+          [showPreview]="form.get('location').value" 
+          (locationPick)="onLocationPicked($event)">
+          </app-location-picker>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <p>upload  The cover picture of your Property </p>
+          <app-image-picker 
+          [showPreview]="form.get('image').value"
+          (imagePick)="onPickImage($event)">
+          </app-image-picker>
+        </ion-col>
+      </ion-row>
+     
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <p>Please enter contact person details</p>
+          <ion-item>
+            <ion-label position="floating">Name and Surname</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="name"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>  
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="surname"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>  
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="emailAdress"
+            ></ion-input>
+          </ion-item>
+        </ion-col> 
+      </ion-row> 
+     
+    </ion-grid>
+  </form>
+</ion-content>
+

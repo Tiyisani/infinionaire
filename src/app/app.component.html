@@ -1,0 +1,42 @@
+<ion-app>
+  <ion-menu side="start" menuId="sideMenu" contentId="main" class="my-custom-menu">
+<ion-header>
+  <ion-toolbar>
+<ion-title>Infinioniare Properties</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+      <ion-menu-toggle >
+        <ion-item color="primary" menu="sideMenu" lines="none" routerLink="/equipment/tabs/discover">
+        <ion-icon name="search-outline" slot="start"></ion-icon>
+        <ion-label>Discover Property</ion-label>
+      </ion-item></ion-menu-toggle>
+     <ion-menu-toggle>
+      <ion-item lines="none" menu="sideMenu" routerLink="/equipment/tabs/messaging" >
+        <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          <ion-label>About us</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item  (click)="onLogOut()" button>
+          <ion-icon  slot="start" name="log-out-outline"></ion-icon>
+          <ion-label>Logout</ion-label>      
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item lines="none" >
+         
+          </ion-item>
+        </ion-menu-toggle>
+    </ion-list>
+</ion-content>
+<ion-footer  >
+  <ion-toolbar>
+    <ion-title>Infionaire Wealth Management</ion-title>
+  </ion-toolbar>
+  
+</ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

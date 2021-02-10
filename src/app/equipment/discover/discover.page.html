@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="sideMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Discover Property</ion-title>
+  </ion-toolbar>
+  <ion-searchbar 
+  type="searchbar"
+   autocorrect
+    autocomplete="true"
+    (ionInput)="filterList($event)"
+    showCancelButton="focus"
+    
+    ><ion-input ></ion-input> </ion-searchbar>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-item>
+          <ion-label position="floating"> Filter The Type of Property?</ion-label>
+          <ion-select (ionChange)="filterEquipment($event)"  class="custom-options" Value="All">
+            
+            <ion-select-option value="All">All</ion-select-option>
+            <ion-select-option value="House">House</ion-select-option>
+            <ion-select-option value="Apartment">Apartment</ion-select-option>
+            <ion-select-option value="Townhouse">Townhouse</ion-select-option>
+            <ion-select-option value="Land">Land</ion-select-option>
+            <ion-select-option value="Farm">Farm</ion-select-option>
+            <ion-select-option value="Business">Development</ion-select-option>
+            <ion-select-option value="Industrial">Industrial</ion-select-option>
+            
+            
+          </ion-select>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+  
+  <ion-segment (ionChange)="onFilterUpdate($event)" value="all">
+    <ion-segment-button value="Sale">Sale</ion-segment-button>
+    <ion-segment-button value="Rent">Rent</ion-segment-button>
+  </ion-segment>
+  <ion-grid *ngIf="isLoading">
+    <ion-row>
+      <ion-col size ="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-spinner color = "primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!isLoading && (!relevantEquipment||relevantEquipment.length<=0 )">
+    <ion-row>
+      <ion-col size ="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <p>Could not find Property please try again!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<ion-grid *ngIf="!isLoading && relevantEquipment.length > 0">
+  <ion-row>
+    <ion-col size ="12" size-sm="8" offset-sm="2" class="ion-text-center">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title> {{relevantEquipment[0].title}} </ion-card-title>
+          <ion-card-title>{{relevantEquipment[0].image8}}</ion-card-title>
+          <ion-card-subtitle>R{{relevantEquipment[0].price }}  ({{relevantEquipment[0].image9}})</ion-card-subtitle>
+        </ion-card-header>
+        <ion-img [src]="relevantEquipment[0].imageUrl"></ion-img>
+        <ion-card-content>
+          <p>{{relevantEquipment[0].type}}</p>
+          <ion-row>
+            <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+              <ion-icon  name="bed-outline"></ion-icon>
+              <p>|Bedroom|</p>
+              <ion-card-title>{{relevantEquipment[0].bedroom}}</ion-card-title>
+            </ion-col>
+            <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+              <ion-icon name="rainy-outline"></ion-icon>
+              <p>|Bathroom|</p>
+              <ion-card-title>{{relevantEquipment[0].bathroom}}</ion-card-title> 
+            </ion-col>
+            <ion-col size-sm ="6" offset-sm="3" class="ion-padding" class="ion-text-center">
+              <ion-icon name="car-outline"></ion-icon>
+              <p>|Garage|</p>
+              <ion-card-title>{{relevantEquipment[0].garage}}</ion-card-title>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+        <div>
+          <ion-button fill="clear" color="primary" [routerLink]="[
+          '/',
+          'equipment',
+          'tabs',
+          'discover',
+          relevantEquipment[0].id]">More</ion-button>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  
+      <ion-list>
+      <ion-virtual-scroll
+      size ="12" size-sm="8" offset-sm="2" class="ion-text-center"
+       [items]="listLoadedEquipment"
+      approxItemHeight="70px">
+      
+        <ion-item 
+        [routerLink]="['/','equipment','tabs','discover',equipment.id]"
+        detail   
+        *virtualItem="let equipment"> 
+        <ion-card-content></ion-card-content>
+          <ion-thumbnail slot="start">
+            <ion-img [src]="equipment.imageUrl"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{equipment.title}}</h2>
+            <h2>{{equipment.image8}}</h2>
+            <p>{{equipment.type}}</p>
+            <p>R{{equipment.price}} ({{equipment.image9}})</p>
+            
+            <ion-row>
+              <ion-col>
+                <p>{{equipment.bedroom}}
+                  <ion-icon  name="bed-outline"></ion-icon>
+                </p>
+              </ion-col>
+              <ion-col>
+                <p>{{equipment.bathroom}}
+                  <ion-icon  name="rainy-outline"></ion-icon>
+                </p>
+              </ion-col>
+              <ion-col>
+                <p>{{equipment.garage}}
+                  <ion-icon  name="car-outline"></ion-icon>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-label>
+        </ion-item>
+        
+      </ion-virtual-scroll>
+      
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-grid>
+</ion-content>
